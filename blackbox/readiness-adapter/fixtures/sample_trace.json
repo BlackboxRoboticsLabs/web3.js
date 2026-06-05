@@ -1,0 +1,66 @@
+{
+  "incident_id": "bbx_compat_web3_js_001",
+  "repository": "web3/web3.js",
+  "focus": "web3 client workflow for proof receipt inspection",
+  "evidence_window": {
+    "before_seconds": 300,
+    "after_seconds": 30
+  },
+  "capabilities": [
+    "web3_client",
+    "proof_receipt",
+    "registry_query",
+    "review_report"
+  ],
+  "evidence": {
+    "stream_manifest": [
+      {
+        "name": "robot.telemetry",
+        "type": "telemetry",
+        "privacy": "non_visual"
+      },
+      {
+        "name": "robot.command",
+        "type": "command",
+        "privacy": "non_visual"
+      },
+      {
+        "name": "robot.safety",
+        "type": "safety_event",
+        "privacy": "non_visual"
+      },
+      {
+        "name": "robot.context",
+        "type": "site_or_runtime_context",
+        "privacy": "redacted"
+      }
+    ],
+    "timeline_events": 5,
+    "privacy_policy_hash": "0x44796962f3a095933e8b5d05ecec7719d77ce9609c2e31e1d3d0ae45648d6b51"
+  },
+  "command_ownership": [
+    {
+      "start_ms": -42000,
+      "end_ms": -13200,
+      "owner": "autonomy",
+      "evidence_ref": "robot.command"
+    },
+    {
+      "start_ms": -13200,
+      "end_ms": -4500,
+      "owner": "remote_operator_or_runtime",
+      "evidence_ref": "robot.command"
+    },
+    {
+      "start_ms": -4500,
+      "end_ms": 0,
+      "owner": "safety_controller",
+      "evidence_ref": "robot.safety"
+    }
+  ],
+  "proof_receipt": {
+    "status": "live_ready_not_broadcast",
+    "packet_root": "0x642f9460833ef84f88009d1138652f01873b83fb26409beb14eede55929b30d3",
+    "policy_hash": "0x44796962f3a095933e8b5d05ecec7719d77ce9609c2e31e1d3d0ae45648d6b51"
+  }
+}

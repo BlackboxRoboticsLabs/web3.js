@@ -1,0 +1,33 @@
+name: Blackbox readiness adapter
+
+on:
+  push:
+    paths:
+      - "blackbox/readiness-adapter/**"
+      - ".github/workflows/blackbox-readiness.yml"
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 4 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python3 blackbox/readiness-adapter/tests/test_adapter.py
+      - run: python3 blackbox/readiness-adapter/adapter.py blackbox/readiness-adapter/fixtures/sample_trace.json --output blackbox/readiness-adapter/reports/latest.json
+      - name: Commit report when adapter evidence changes
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blackbox/readiness-adapter/reports/latest.json
+          git diff --cached --quiet || git commit -m "Update Blackbox adapter readiness report"
+          git push
