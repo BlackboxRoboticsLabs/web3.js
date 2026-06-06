@@ -3,8 +3,8 @@
   "claim_boundary": "Compatibility research only. This fork does not claim upstream affiliation, production deployment, legal fault assignment, or safety certification.",
   "command_owner_interval_count": 3,
   "evidence_window": {
-    "before_seconds": 300,
-    "after_seconds": 30
+    "after_seconds": 30,
+    "before_seconds": 300
   },
   "focus": "web3 client workflow for proof receipt inspection",
   "incident_id": "bbx_compat_web3_js_001",
@@ -16,9 +16,9 @@
   ],
   "missing_capabilities": [],
   "proof_receipt": {
-    "status": "live_ready_not_broadcast",
     "packet_root": "0x642f9460833ef84f88009d1138652f01873b83fb26409beb14eede55929b30d3",
-    "policy_hash": "0x44796962f3a095933e8b5d05ecec7719d77ce9609c2e31e1d3d0ae45648d6b51"
+    "policy_hash": "0x44796962f3a095933e8b5d05ecec7719d77ce9609c2e31e1d3d0ae45648d6b51",
+    "status": "live_ready_not_broadcast"
   },
   "readiness_score": 100,
   "report_version": "blackbox-readiness-adapter-v0.1",
